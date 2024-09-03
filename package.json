@@ -11,5 +11,8 @@
     "url": "git+https://github.com/drasov/fragments.git"
   },
   "author": "Daniyil Rasov",
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "prettier": "3.3.3"
+  }
 }
