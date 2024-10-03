@@ -8,10 +8,6 @@ const passport = require('passport');
 const authenticate = require('./auth');
 const { createErrorResponse } = require('./response');
 
-// author and version from our package.json file
-// TODO: make sure you have updated your name in the `author` section
-// const { author, version } = require('../package.json');
-
 const logger = require('./logger');
 const pino = require('pino-http')({
   // Use our default logger instance, which is already configured
@@ -45,7 +41,6 @@ app.use((req, res) => {
   res.status(404).json(createErrorResponse(404, 'not found'));
 });
 
-// Add error-handling middleware to deal with anything else
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
   // We may already have an error response we can use, but if not,
