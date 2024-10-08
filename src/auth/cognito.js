@@ -4,9 +4,10 @@
 // Identity Token provided by Cognito. The token will be
 // parsed from the Authorization header (i.e., Bearer Token).
 
-const passport = require('passport');
+//const passport = require('passport');
 const BearerStrategy = require('passport-http-bearer').Strategy;
 const { CognitoJwtVerifier } = require('aws-jwt-verify');
+const authorize = require('./auth-middleware');
 
 const logger = require('../logger');
 
@@ -42,6 +43,7 @@ module.exports.strategy = () =>
   // For our Passport authentication strategy, we'll look for the Bearer Token
   // in the Authorization header, then verify that with our Cognito JWT Verifier.
   new BearerStrategy(async (token, done) => {
+    logger.debug({token}, 'Received token for verification');
     try {
       // Verify this JWT
       const user = await jwtVerifier.verify(token);
@@ -55,4 +57,4 @@ module.exports.strategy = () =>
     }
   });
 
-module.exports.authenticate = () => passport.authenticate('bearer', { session: false });
+module.exports.authenticate = () => authorize('bearer');

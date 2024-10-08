@@ -1,10 +1,22 @@
 // src/routes/api/get.js
-
-const { createSuccessResponse } = require("../../response");
+const { Fragment } = require('../../model/fragment');
+const logger = require('../../logger');
+const { createSuccessResponse, createErrorResponse  } = require("../../response");
 
 /**
  * Get a list of fragments for the current user
  */
-module.exports = (req, res) => {
-    res.status(200).json(createSuccessResponse({ fragments: [] }));
-  };
+module.exports = async (req, res) => {
+  logger.debug('req.query: ' + JSON.stringify(req.query));
+  let expand = req.query.expand === '1';
+  try {
+    const fragments = await Fragment.byUser(req.user, expand);
+    res.status(200).json(
+      createSuccessResponse({
+        fragments: fragments,
+      })
+    );
+  } catch (e) {
+    res.status(500).json(createErrorResponse(500, e.message));
+  }
+};
