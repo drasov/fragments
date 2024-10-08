@@ -20,25 +20,25 @@ module.exports = async (req, res) => {
 
     if (extension) {
       // Attempt to convert the fragment to the requested type
-      const { resultdata, convertedType } = await fragment.convertType(data, extension);
+      const { recvdata, convertedType } = await fragment.convertType(data, extension);
 
-      if (!resultdata) {
+      if (!recvdata) {
         return res.status(415).json(
-          createErrorResponse(415, 'Fragment can\'t be converted to this type or extension is invalid')
+          createErrorResponse(415, 'Fragment couldn\'t be converted to this type or extension is invalid')
         );
       }
-
+      
       // Set the response content type and send the converted data
       res.set('Content-Type', convertedType);
-      return res.status(200).send(resultdata);
+      return res.status(200).send(recvdata);
     } else {
       // If no conversion is needed, send the original fragment data
-      logger.debug('fragment type in get id: ' + fragment.type);
+      logger.debug(`Sending original fragment data for fragment ID: ${fragmentId}, type: ${fragment.type}`);
       res.set('Content-Type', fragment.type);
       return res.status(200).send(data);
     }
   } catch (e) {
-    logger.warn(e.message, 'Error getting fragment by id');
-    return res.status(404).json(createErrorResponse(404, 'No fragment with this id'));
+    logger.warn(`Error occurred while retrieving fragment by ID: ${req.params.id}. Error message: ${e.message}`);
+    return res.status(404).json(createErrorResponse(404, 'No fragment with this ID'));
   }
 };

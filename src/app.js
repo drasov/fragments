@@ -36,6 +36,18 @@ app.use(passport.initialize());
 // Define our routes
 app.use('/', require('./routes'));
 
+// Error-triggering route for testing 500 error
+app.get('/error', (req, res, next) => {
+  next(new Error('Internal server error')); // Triggers 500
+});
+
+// Error-triggering route for testing 499 error
+app.get('/custom-error', (req, res, next) => {
+  const err = new Error('Custom 499 error');
+  err.status = 499; // Custom status code
+  next(err); // Pass the error to the error handler
+});
+
 // Add 404 middleware to handle any requests for resources that can't be found
 app.use((req, res) => {
   res.status(404).json(createErrorResponse(404, 'not found'));
@@ -43,12 +55,11 @@ app.use((req, res) => {
 
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
-  // We may already have an error response we can use, but if not,
   // use a generic `500` server error and message.
   const status = err.status || 500;
   const message = err.message || 'unable to process request';
 
-  // If this is a server error, log something so we can see what's going on.
+  // If this is a server error, then log error
   if (status > 499) {
     logger.error({ err }, `Error processing request`);
   }

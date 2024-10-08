@@ -91,11 +91,9 @@ class Fragment {
    * Saves the current fragment to the database
    * @returns Promise<void>
    */
-  save() {
+  async save() {
     this.updated = new Date().toISOString();
-    writeFragment(this).catch(error => {
-      logger.error("Error saving fragment:", error);
-    });
+    await writeFragment(this);
   }
   
 
@@ -105,7 +103,6 @@ class Fragment {
    */
   getData() {
     try {
-      // Retrieves data of the fragment
       return readFragmentData(this.ownerId, this.id)
         .then((data) => Buffer.from(data))
         .catch(() => {
