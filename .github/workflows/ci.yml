@@ -64,7 +64,7 @@ jobs:
         - name: Build and push
           env:
             # Define an Environment Variable with your Docker Hub Repo
-            DOCKERHUB_REPO: draso/fragments  # Replace `username` with your Docker Hub username
+            DOCKERHUB_REPO: drasov/fragments  # Replace `username` with your Docker Hub username
             # Define an Environment Variable with the current git commit's sha
             SHA_TAG: sha-${{ github.sha }}
           uses: docker/build-push-action@v4
