@@ -30,7 +30,10 @@ router.get('/fragments', require('./get'));
 
 router.get('/fragments/:id', require('./getId'));
 
+router.get('/fragments/:id/info', require('./getInfo'));
+
 // Other routes (POST, DELETE, etc.) will go here later on...
 router.post('/fragments', rawBody(), require('./post'));
+
 
 module.exports = router;
