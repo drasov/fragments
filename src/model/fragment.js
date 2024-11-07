@@ -155,8 +155,19 @@ class Fragment {
    */
   get formats() {
     // Retrieves formats for the fragment
+    if (this.mimeType === 'text/plain') {
       return ['text/plain'];
+    } else if (this.mimeType === 'text/markdown') {
+      return ['text/plain', 'text/markdown', 'text/html'];
+    } else if (this.mimeType === 'text/html') {
+      return ['text/plain', 'text/html'];
+    } else if (this.mimeType === 'text/csv') {
+      return ['text/plain', 'text/csv'];
+    } else {
+      return ['text/plain', 'application/json'];
+    }
   }
+  
 
   /**
    * Returns true if we know how to work with this content type
@@ -164,10 +175,17 @@ class Fragment {
    * @returns {boolean} true if we support this Content-Type (i.e., type/subtype)
    */
   static isSupportedType(value) {
-    const validTypes = ['text/plain', 'text/plain; charset=utf-8'];
     const { type } = contentType.parse(value);
     return validTypes.includes(type);
   }
 }
+
+const validTypes = [
+  'text/plain',
+  'text/markdown',
+  'text/html',
+  'text/csv',
+  'application/json',
+];
 
 module.exports.Fragment = Fragment;
