@@ -1,6 +1,7 @@
 const logger = require('../../logger');
 const { Fragment } = require('../../model/fragment');
 const { createSuccessResponse, createErrorResponse } = require('../../response');
+
 module.exports = async (req, res) => {
   try {
     const fragment = await Fragment.byId(req.user, req.params.id);

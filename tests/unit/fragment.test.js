@@ -243,5 +243,22 @@ describe('Fragment class', () => {
         await Fragment.delete('1234', fragment.id);
         expect(() => Fragment.byId('1234', fragment.id)).rejects.toThrow();
     });
+    
+    test('formats should return correct formats for text/plain', () => {
+      const fragment = new Fragment({
+        ownerId: 'user1',
+        type: 'text/plain',
+      });
+      expect(fragment.formats).toEqual(['text/plain']);
+    });
+    
+    test('formats should return correct formats for text/html', () => {
+      const fragment = new Fragment({
+        ownerId: 'user1',
+        type: 'text/html',
+      });
+      expect(fragment.formats).toEqual(['text/plain', 'text/html']);
+    });
+    
   });
 });
