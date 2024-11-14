@@ -10,7 +10,8 @@
     "lint": "eslint --config eslint.config.mjs \"./src/**/*.js\" \"tests/**/*.js\"",
     "start": "node src/index.js",
     "dev": "cross-env LOG_LEVEL=debug nodemon ./src/index.js --watch src",
-    "debug": "LOG_LEVEL=debug nodemon --inspect=0.0.0.0:9229 ./src/index.js --watch src"
+    "debug": "LOG_LEVEL=debug nodemon --inspect=0.0.0.0:9229 ./src/index.js --watch src",
+    "test:integration": "hurl --test --glob \"tests/integration/**/*.hurl\""
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,7 @@
   "license": "UNLICENSED",
   "devDependencies": {
     "@eslint/js": "^9.9.1",
+    "@orangeopensource/hurl": "^5.0.1",
     "cross-env": "^7.0.3",
     "eslint": "^9.10.0",
     "globals": "^15.9.0",
@@ -39,11 +41,13 @@
     "http-auth": "^4.2.0",
     "http-auth-passport": "^1.0.7",
     "jq": "^1.7.2",
+    "markdown-it": "^14.1.0",
     "passport": "^0.7.0",
     "passport-http-bearer": "^1.0.1",
     "pino": "^9.4.0",
     "pino-http": "^10.3.0",
     "pino-pretty": "^11.2.2",
+    "sharp": "^0.33.5",
     "stoppable": "^1.1.0"
   }
 }

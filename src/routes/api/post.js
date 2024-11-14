@@ -2,69 +2,70 @@
 const responseHandler = require('../../response');
 const { Fragment } = require('../../model/fragment');
 const logger = require('../../logger');
-
 const { createSuccessResponse, createErrorResponse } = responseHandler;
 
 const postFragment = async (req, res) => {
   logger.debug('Received POST request with body: ', req.body);
-  
+ 
   const contentType = req.get('Content-Type');
 
-  // Handle JSON content type (application/json)
-  if (contentType === 'application/json') {
-    // Assuming the body is already parsed as JSON
+  // Function to create and save fragment
+  const createAndSaveFragment = async (type, data) => {
     const fragmentData = {
       ownerId: req.user,
-      type: contentType,
+      type: type,
     };
 
-    try {
-      const fragment = new Fragment(fragmentData);
-      await fragment.save();
-      await fragment.setData(JSON.stringify(req.body)); // Save JSON as string or buffer
-      logger.debug('Fragment created successfully: ', JSON.stringify(fragment));
+    const fragment = new Fragment(fragmentData);
+    await fragment.save();
+    await fragment.setData(data);
+    
+    logger.debug('Fragment created successfully: ', JSON.stringify(fragment));
+    
+    // Set response headers
+    res.set('Location', `${process.env.API_URL}/v1/fragments/${fragment.id}`);
+    
+    // Return success response with fragment metadata
+    return res.status(201).json(createSuccessResponse({ fragment }));
+  };
 
-      res.set('Content-Type', fragment.type);
-      res.set('Location', `${process.env.API_URL}/v1/fragments/${fragment.id}`);
-      return res.status(201).json(createSuccessResponse({ fragment }));
-    } catch (error) {
-      logger.error('Error creating fragment: ', error);
-      return res.status(500).json(createErrorResponse(500, error.message));
+  try {
+    // Handle JSON content type
+    if (contentType === 'application/json') {
+      return await createAndSaveFragment(
+        'application/json',
+        JSON.stringify(req.body)
+      );
     }
-  }
-
-  // Handle text/plain and other types, ensuring Buffer is used
-  if (Buffer.isBuffer(req.body)) {
-    const fragmentData = {
-      ownerId: req.user,
-      type: contentType,
-    };
-
-    try {
-      const fragment = new Fragment(fragmentData);
-      await fragment.save();
-      await fragment.setData(req.body);
-      logger.debug('Fragment created successfully: ', JSON.stringify(fragment));
-
-      const locationUrl = `${process.env.API_URL}/v1/fragments/${fragment.id}`;
-      logger.debug(`Location: ${locationUrl}`)
-
-      res.set('Content-Type', fragment.type);
-      res.set('Location', `${process.env.API_URL}/v1/fragments/${fragment.id}`);
-      return res.status(201).json(createSuccessResponse({ fragment }));
-    } catch (error) {
-      logger.error('Error creating fragment: ', error);
-      return res.status(500).json(createErrorResponse(500, error.message));
+    
+    // Handle text/plain with charset
+    if (contentType.startsWith('text/plain')) {
+      // Preserve the full content type including charset if present
+      return await createAndSaveFragment(
+        contentType,
+        Buffer.isBuffer(req.body) ? req.body : Buffer.from(req.body)
+      );
     }
-  }
+    
+    // Handle other supported types
+    if (Buffer.isBuffer(req.body)) {
+      return await createAndSaveFragment(
+        contentType,
+        req.body
+      );
+    }
 
-  // If the content type is unsupported
-  return res.status(415).json(createErrorResponse(415, 'Unsupported Media Type'));
+    // If we get here, the content type is unsupported
+    return res.status(415).json(
+      createErrorResponse(415, 'Unsupported Media Type')
+    );
+    
+  } catch (error) {
+    logger.error('Error creating fragment: ', error);
+    return res.status(500).json(
+      createErrorResponse(500, error.message)
+    );
+  }
 };
 
-
 module.exports = postFragment;
-
-
-
-
