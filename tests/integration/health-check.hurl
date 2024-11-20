@@ -1,3 +1,5 @@
+# tests/integration/health-check.hurl
+
 # Health Check Test
 GET http://localhost:8080
 
