@@ -1,0 +1,121 @@
+{
+    "taskDefinitionArn": "arn:aws:ecs:us-east-1:371674756731:task-definition/fragments-task:4",
+    "containerDefinitions": [
+        {
+            "name": "fragments-container",
+            "image": "drasov/fragments:latest",
+            "cpu": 256,
+            "memoryReservation": 512,
+            "portMappings": [
+                {
+                    "name": "fragments-container-80-tcp",
+                    "containerPort": 80,
+                    "hostPort": 80,
+                    "protocol": "tcp",
+                    "appProtocol": "http"
+                }
+            ],
+            "essential": true,
+            "environment": [
+                {
+                    "name": "AWS_SESSION_TOKEN",
+                    "value": "IQoJb3JpZ2luX2VjEBUaCXVzLXdlc3QtMiJHMEUCIA6N3IkdDWtXWjI5eyDnPO0kAdROX/8Bp3kAVOw/3rAPAiEAj7YZJdizVIxOn5qMoe4n6JayeJafzF3mdsmzECdgit8qsQIIrv//////////ARABGgwzNzE2NzQ3NTY3MzEiDOx6xFJ5Wl1vt9IY1SqFAvqiClyvPeTjFzUFohlywG+kunV6Z7uY1iQyJ7a9xnVXD9VxW8cErJEJ+3zDPc1lwbxSW5m5bUciudYO3BLBxcqUMVirwyNao3+WCVs2KZZQIHwmoy9u7HFku8Pg+b8WMLFMQ56p4sKItrSKgIrjlnx0V/GrvitzdZXNtiX2EWuFAjhY37bjx1uH9O9UbaJ1LSFZ3j/HZh35wrEw5BJ/X6qH7RfW0ju18l+kt5ACnBGxKlDxUHWv1VtwRRPz8EiJlo56+OfwxmlLkU7DBvj8neFDUyyea1fof8Hp5z8LnGYrMaPZlebXsrIY9klGKn56smfwP1fDP3tzdhH88h9oPnieJWTb4DCGtv65BjqdAXao2Um7G5KuSPB9+H1uULY4njK7luTsFXViXf9ip5kzdKVAjegxDmV2WKoINK5fTGsAEWNGnkxKTNl2GZKJ3ypvYFHGm1gUyDJCGCEin5cm5KPZZPz+V/078VREcwUkM6+FAa9nc3mvYUls+cHE+n4Y1rtfS1CeLfPiHScC3nDgfYTsKnPOnTbSrE/1vWk2jvWbSDBCodt08qQHsQ0="
+                },
+                {
+                    "name": "AWS_COGNITO_POOL_ID",
+                    "value": "us-east-1_q3E8GrLZ9"
+                },
+                {
+                    "name": "PORT",
+                    "value": "80"
+                },
+                {
+                    "name": "AWS_ACCESS_KEY_ID",
+                    "value": "ASIAVNCMKWZ5ZTO5FW7F"
+                },
+                {
+                    "name": "AWS_SECRET_ACCESS_KEY",
+                    "value": "CniABCPlblQTEgTV8WArE4OE/LABIZEoKu0FxF/j"
+                },
+                {
+                    "name": "AWS_S3_BUCKET_NAME",
+                    "value": "drasov-fragments"
+                },
+                {
+                    "name": "AWS_COGNITO_CLIENT_ID",
+                    "value": "2gniphdcg83f28ju0ve3fq7rsg"
+                }
+            ],
+            "environmentFiles": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "ulimits": [],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/fragments-task",
+                    "mode": "non-blocking",
+                    "awslogs-create-group": "true",
+                    "max-buffer-size": "25m",
+                    "awslogs-region": "us-east-1",
+                    "awslogs-stream-prefix": "ecs"
+                },
+                "secretOptions": []
+            },
+            "systemControls": []
+        }
+    ],
+    "family": "fragments-task",
+    "taskRoleArn": "arn:aws:iam::371674756731:role/LabRole",
+    "executionRoleArn": "arn:aws:iam::371674756731:role/LabRole",
+    "networkMode": "awsvpc",
+    "revision": 4,
+    "volumes": [],
+    "status": "ACTIVE",
+    "requiresAttributes": [
+        {
+            "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+        },
+        {
+            "name": "ecs.capability.execution-role-awslogs"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.28"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.task-iam-role"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+        },
+        {
+            "name": "ecs.capability.task-eni"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
+        }
+    ],
+    "placementConstraints": [],
+    "compatibilities": [
+        "EC2",
+        "FARGATE"
+    ],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "256",
+    "memory": "512",
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
+    },
+    "registeredAt": "2024-11-21T22:05:20.081Z",
+    "registeredBy": "arn:aws:sts::371674756731:assumed-role/voclabs/user3497453=Rasov,_Daniyil",
+    "tags": []
+}
