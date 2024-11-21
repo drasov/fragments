@@ -100,3 +100,4 @@ jobs:
           cluster: fragments-cluster
           service: fragments-service
           wait-for-service-stability: true
+ 
