@@ -44,6 +44,10 @@
                 {
                     "name": "AWS_COGNITO_CLIENT_ID",
                     "value": "2gniphdcg83f28ju0ve3fq7rsg"
+                },
+                {
+                    "name": "AWS_DYNAMODB_TABLE_NAME",
+                    "value": "fragments"
                 }
             ],
             "environmentFiles": [],
