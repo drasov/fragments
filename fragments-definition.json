@@ -1,9 +1,9 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:us-east-1:371674756731:task-definition/fragments-task:4",
+    "taskDefinitionArn": "arn:aws:ecs:us-east-1:371674756731:task-definition/fragments-task:7",
     "containerDefinitions": [
         {
             "name": "fragments-container",
-            "image": "drasov/fragments:latest",
+            "image": "371674756731.dkr.ecr.us-east-1.amazonaws.com/fragments:v0.10.0",
             "cpu": 256,
             "memoryReservation": 512,
             "portMappings": [
@@ -19,7 +19,7 @@
             "environment": [
                 {
                     "name": "AWS_SESSION_TOKEN",
-                    "value": "IQoJb3JpZ2luX2VjEBUaCXVzLXdlc3QtMiJHMEUCIA6N3IkdDWtXWjI5eyDnPO0kAdROX/8Bp3kAVOw/3rAPAiEAj7YZJdizVIxOn5qMoe4n6JayeJafzF3mdsmzECdgit8qsQIIrv//////////ARABGgwzNzE2NzQ3NTY3MzEiDOx6xFJ5Wl1vt9IY1SqFAvqiClyvPeTjFzUFohlywG+kunV6Z7uY1iQyJ7a9xnVXD9VxW8cErJEJ+3zDPc1lwbxSW5m5bUciudYO3BLBxcqUMVirwyNao3+WCVs2KZZQIHwmoy9u7HFku8Pg+b8WMLFMQ56p4sKItrSKgIrjlnx0V/GrvitzdZXNtiX2EWuFAjhY37bjx1uH9O9UbaJ1LSFZ3j/HZh35wrEw5BJ/X6qH7RfW0ju18l+kt5ACnBGxKlDxUHWv1VtwRRPz8EiJlo56+OfwxmlLkU7DBvj8neFDUyyea1fof8Hp5z8LnGYrMaPZlebXsrIY9klGKn56smfwP1fDP3tzdhH88h9oPnieJWTb4DCGtv65BjqdAXao2Um7G5KuSPB9+H1uULY4njK7luTsFXViXf9ip5kzdKVAjegxDmV2WKoINK5fTGsAEWNGnkxKTNl2GZKJ3ypvYFHGm1gUyDJCGCEin5cm5KPZZPz+V/078VREcwUkM6+FAa9nc3mvYUls+cHE+n4Y1rtfS1CeLfPiHScC3nDgfYTsKnPOnTbSrE/1vWk2jvWbSDBCodt08qQHsQ0="
+                    "value": "IQoJb3JpZ2luX2VjEKf//////////wEaCXVzLXdlc3QtMiJGMEQCIEq0hlfEp1tzo4oc9RInRsU0hFnIEBvgrUSgC6+AUN/WAiBoasznttFGxkZqjYLenh8hWBwyTXeoB+oiRZQhpxNtkyqoAghQEAEaDDM3MTY3NDc1NjczMSIMod52d1BQ1l5t9MgkKoUCiq6NQ0UPHW1/3wZsdRTdiSdIYj8vbfa9e+UzLR9hdBkASOVW6k2gzOznW5AnEBhu3VyHFFd05QbuA8JBqm5wfnehvuZ/uScMlzRsRWBZBBSFKYIONEHpWB9eH78rnHLUQvp/QEJZzvQ7avV1oSid+gmwlAbLtUsKm0gA/pdFN/Mhv3eaMl4uCFfLt3PpDLPtbJceKCw71W2Lw6++CsDp6r9DdL8+lGZD190AZoxTrKzUigZBdmgWdP95b2mRxd1YPBcHn8IVoHhP4egPNbv+vxNjchJqkWnqtQXj4zgYYiELAeYz3kP3IePNvxpGN/cb5YjIdmHjpBORT15vSSrSuS+gjQwIMMLAnroGOp4BLCUe8HwwpSwSXCTB39cboiEf6QHxn4l5WfWRaimbYpNc2aqIeoo/MhSvGawIuk3md2YLzRb15lfDgHg6bzPPgppG29mx65g1TYO5hM41bF3o5yS3K3wo50cepPsSO9YdQur1m893pt6pSQv1lviPL7eytU/IDPIpy6Yds0o0/cxtj7JMtGWcmmRH48AXuI6/MEkpTnjB2lCsEDLUOdY="
                 },
                 {
                     "name": "AWS_COGNITO_POOL_ID",
@@ -31,29 +31,35 @@
                 },
                 {
                     "name": "AWS_ACCESS_KEY_ID",
-                    "value": "ASIAVNCMKWZ5ZTO5FW7F"
+                    "value": "ASIAVNCMKWZ5ZRZMGDHC"
                 },
                 {
                     "name": "AWS_SECRET_ACCESS_KEY",
-                    "value": "CniABCPlblQTEgTV8WArE4OE/LABIZEoKu0FxF/j"
+                    "value": "yK6iPr7CjLfCjrzWHjDT8BX2bh0lFDx05adbjTQs"
                 },
                 {
                     "name": "AWS_S3_BUCKET_NAME",
                     "value": "drasov-fragments"
                 },
                 {
+                    "name": "AWS_DYNAMODB_TABLE_NAME",
+                    "value": "fragments"
+                },
+                {
+                    "name": "NODE_ENV",
+                    "value": "production"
+                },
+                {
                     "name": "AWS_COGNITO_CLIENT_ID",
                     "value": "2gniphdcg83f28ju0ve3fq7rsg"
                 },
                 {
-                    "name": "AWS_DYNAMODB_TABLE_NAME",
-                    "value": "fragments"
+                    "name": "LOG_LEVEL",
+                    "value": "info"
                 }
             ],
-            "environmentFiles": [],
             "mountPoints": [],
             "volumesFrom": [],
-            "ulimits": [],
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
@@ -63,8 +69,7 @@
                     "max-buffer-size": "25m",
                     "awslogs-region": "us-east-1",
                     "awslogs-stream-prefix": "ecs"
-                },
-                "secretOptions": []
+                }
             },
             "systemControls": []
         }
@@ -73,7 +78,7 @@
     "taskRoleArn": "arn:aws:iam::371674756731:role/LabRole",
     "executionRoleArn": "arn:aws:iam::371674756731:role/LabRole",
     "networkMode": "awsvpc",
-    "revision": 4,
+    "revision": 7,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
@@ -82,6 +87,9 @@
         },
         {
             "name": "ecs.capability.execution-role-awslogs"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.ecr-auth"
         },
         {
             "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
@@ -94,6 +102,9 @@
         },
         {
             "name": "com.amazonaws.ecs.capability.task-iam-role"
+        },
+        {
+            "name": "ecs.capability.execution-role-ecr-pull"
         },
         {
             "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
@@ -119,7 +130,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2024-11-21T22:05:20.081Z",
+    "registeredAt": "2024-11-27T22:45:45.872Z",
     "registeredBy": "arn:aws:sts::371674756731:assumed-role/voclabs/user3497453=Rasov,_Daniyil",
     "tags": []
 }
