@@ -79,4 +79,24 @@ describe('GET /v1/fragments/:id', () => {
     expect(getRes.body).toHaveProperty('error');
     expect(getRes.body.error.message).toEqual('No fragment with this ID');
   });
+
+  test('returns JSON fragment data correctly', async () => {
+    const mockFragment = {
+      id: 'fragment-id',
+      type: 'application/json',
+      getData: jest.fn().mockResolvedValue(JSON.stringify({ message: 'Hello World' })),
+    };
+    Fragment.byId.mockResolvedValue(mockFragment);
+  
+    const getRes = await request(app)
+      .get('/v1/fragments/fragment-id')
+      .auth('user1@email.com', 'password1');
+  
+    expect(getRes.statusCode).toBe(200);
+    expect(getRes.body.status).toBe('ok');
+    expect(getRes.body.fragment.data.message).toBe('Hello World');
+    expect(getRes.header['content-type']).toBe('application/json; charset=utf-8');
+  });
+  
 });
+

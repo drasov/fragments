@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
     const fragments = await Fragment.byUser(req.user, expand);
     res.status(200).json(
       createSuccessResponse({
-        fragments: fragments,
+        fragments: [...fragments],
       })
     );
   } catch (e) {

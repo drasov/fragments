@@ -161,10 +161,10 @@ class Fragment {
       return ['text/plain', 'text/markdown', 'text/html'];
     } else if (this.mimeType === 'text/html') {
       return ['text/plain', 'text/html'];
-    } else if (this.mimeType === 'text/csv') {
-      return ['text/plain', 'text/csv'];
-    } else {
+    } else if (this.mimeType === 'application/json') {
       return ['text/plain', 'application/json'];
+    } else {
+      return ['image/png', 'image/jpeg', 'image/webp', 'image/gif'];
     }
   }
   
@@ -186,6 +186,10 @@ const validTypes = [
   'text/html',
   'text/csv',
   'application/json',
+  'image/png',
+  'image/jpeg',
+  'image/webp',
+  'image/gif',
 ];
 
 module.exports.Fragment = Fragment;
